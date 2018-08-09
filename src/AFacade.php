@@ -20,7 +20,7 @@ abstract class AFacade {
 
 	/**
 	 * @return object
-	 * @throws \Exception
+	 * @throws \Throwable
 	 */
 	private final static function prepare(): object {
 		if (!isset(self::$Cache[static::class])){
@@ -39,7 +39,20 @@ abstract class AFacade {
 			 * The initialization method is always called after the recipient creation
 			 * and can be used for configuration or any similar goals.
 			 */
-			static::initialize();
+			try {
+				static::initialize();
+			}catch (\Throwable $Exception){
+				unset(self::$Cache[static::class]);
+
+				/**
+				 * If the initialize method throws an exception then the created recipient instance
+				 * have to be destroyed before this exception will be sent for further processing.
+				 *
+				 * @warning This is to avoid a situation of using uninitialized
+				 * objects by ignoring exceptions.
+				 */
+				throw $Exception;
+			}
 		}
 
 		return self::$Cache[static::class];
@@ -55,7 +68,7 @@ abstract class AFacade {
 	 * Returns a singleton instance of the recipient class.
 	 *
 	 * @return object
-	 * @throws \Exception
+	 * @throws \Throwable
 	 */
 	public final static function recipient(){
 		return static::prepare();
@@ -65,7 +78,7 @@ abstract class AFacade {
 	 * @param string $name
 	 * @param array $Args
 	 * @return mixed
-	 * @throws \Exception
+	 * @throws \Throwable
 	 */
 	public final static function __callStatic(string $name, array $Args) {
 		return self::prepare()->{$name}(...$Args);
