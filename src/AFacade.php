@@ -65,16 +65,6 @@ abstract class AFacade {
 	protected static function initialize(): void {}
 
 	/**
-	 * Returns a singleton instance of the recipient class.
-	 *
-	 * @return object
-	 * @throws \Throwable
-	 */
-	public final static function recipient(){
-		return static::prepare();
-	}
-
-	/**
 	 * @param string $name
 	 * @param array $Args
 	 * @return mixed
