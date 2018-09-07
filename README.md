@@ -3,10 +3,10 @@ The phpABLE abstractions library provides the facade pattern implementation.
 
 ## Requirements
 * PHP >= 7.2.0
-* [Able/Statics](https://github.com/phpable/statics)
+* [able/statics](https://github.com/phpable/statics)
 
 ## Install
-There's a simple way to install ```Able/Facades``` into your project via [Composer](http://getcomposer.org):
+There's a simple way to install ```able/facades``` into your project via [Composer](http://getcomposer.org):
 
 ```bash
 composer require able/facades

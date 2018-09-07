@@ -12,7 +12,7 @@ class SInit extends AStruct {
 	/**
 	 * @var array
 	 */
-	protected static $Prototype = ['args', 'handler'];
+	protected static array $Prototype = ['args', 'handler'];
 
 	/**
 	 * @const array
