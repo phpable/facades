@@ -37,7 +37,7 @@ abstract class AFacade {
 
 			/**
 			 * The initialization method is always called after the recipient creation
-			 * and can be used for configuration or any similar goals.
+			 * and can be used for configuration or some similar purposes.
 			 */
 			try {
 				static::initialize();
@@ -59,12 +59,6 @@ abstract class AFacade {
 	}
 
 	/**
-	 * The initialization method does nothing by default,
-	 * so it only exists to be overridden in inheriting classes.
-	 */
-	protected static function initialize(): void {}
-
-	/**
 	 * @param string $name
 	 * @param array $Args
 	 * @return mixed
@@ -81,4 +75,10 @@ abstract class AFacade {
 	 * @return array
 	 */
 	protected abstract static function provide(): array;
+
+	/**
+	 * The initialization method does nothing by default,
+	 * so it only exists to be overridden in inheriting classes.
+	 */
+	protected static function initialize(): void {}
 }
