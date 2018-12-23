@@ -81,5 +81,5 @@ abstract class AFacade {
 	/**
 	 * @return SInit
 	 */
-	abstract static function initialize(): SInit;
+	abstract protected static function initialize(): SInit;
 }
