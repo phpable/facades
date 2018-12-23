@@ -1,6 +1,8 @@
 <?php
 namespace Able\Facades;
 
+use \Able\Facades\Structures\SInit;
+
 use \Able\Prototypes\TUnclonable;
 use \Able\Prototypes\TUncreatable;
 
@@ -33,25 +35,25 @@ abstract class AFacade {
 				throw new \Exception('Undefined recepient class!');
 			}
 
-			self::$Cache[static::class] = new static::$Recipient(...static::provide());
-
-			/**
-			 * The initialization method is always called after the recipient creation
-			 * and can be used for configuration or some similar purposes.
-			 */
 			try {
-				static::initialize();
-			}catch (\Throwable $Exception){
-				unset(self::$Cache[static::class]);
+				$Initializer = static::initialize();
 
 				/**
-				 * If the initialize method throws an exception then the created recipient instance
-				 * have to be destroyed before this exception will be sent for further processing.
-				 *
-				 * @warning This is to avoid a situation of using uninitialized
-				 * objects by ignoring exceptions.
+				 * The argument list required by the recipient class constructor
+				 * must be provided via the related field of the initializing structure.
 				 */
-				throw $Exception;
+				self::$Cache[static::class] = new static::$Recipient(...$Initializer->args);
+
+				/**
+				 * The second field of structure could contain an initialize method.
+				 * It has to be called right after the creation of the recipient instance.
+				 */
+				if (!is_null($Initializer->handler)){
+					call_user_func($Initializer->handler, self::$Cache[static::class]);
+				}
+
+			} catch (\Throwable $Exception){
+				throw new \Exception('Facade initialization failed!', -1, $Exception);
 			}
 		}
 
@@ -69,16 +71,7 @@ abstract class AFacade {
 	}
 
 	/**
-	 * Provides arguments for a recipient object
-	 * creation if needed.
-	 *
-	 * @return array
+	 * @return SInit
 	 */
-	protected abstract static function provide(): array;
-
-	/**
-	 * The initialization method does nothing by default,
-	 * so it only exists to be overridden in inheriting classes.
-	 */
-	protected static function initialize(): void {}
+	abstract static function initialize(): SInit;
 }
