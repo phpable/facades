@@ -61,6 +61,14 @@ abstract class AFacade {
 	}
 
 	/**
+	 * @return object
+	 * @throws \Throwable
+	 */
+	public final static function getRecipientInstance(): object {
+		return self::prepare();
+	}
+
+	/**
 	 * @param string $name
 	 * @param array $Args
 	 * @return mixed
