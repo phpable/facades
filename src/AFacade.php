@@ -16,6 +16,11 @@ abstract class AFacade {
 	protected static $Recipient = null;
 
 	/**
+	 * @var bool
+	 */
+	protected static $keepSingleInstance  = true;
+
+	/**
 	 * @var array
 	 */
 	private static $Cache = [];
@@ -25,7 +30,7 @@ abstract class AFacade {
 	 * @throws \Throwable
 	 */
 	private final static function prepare(): object {
-		if (!isset(self::$Cache[static::class])){
+		if (!static::$keepSingleInstance || !isset(self::$Cache[static::class])){
 
 			/**
 			 * Each inheriting class has to be obligatorily linked
