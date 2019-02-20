@@ -23,7 +23,7 @@ class Recipient {
         $this->name = $name;
     }
     
-    publick function changeName(string $name): void {
+    public function changeName(string $name): void {
         $this->name = $name;
     }
 
