@@ -45,7 +45,8 @@ class FacadeExample extends AFacade {
     protected static $Recipient = Recipient::class;
 
     /**
-     * The initialize method can be used to provide the necessary arguments if any. 
+     * The initialize method can be used to provide the necessary 
+     * to the recipient arguments if any. 
      */
     protected final static function initialize(): SInit {
         return new SInit(["John"]);
@@ -68,10 +69,6 @@ use \Able\Facades\Structures\SInit;
 class FacadeExample extends AFacade {
     protected static $Recipient = Recipient::class;
 
-    /**
-     * The initialize method can be used to provide the necessary 
-     * to the recipient arguments if any. 
-     */
     protected final static function initialize(): SInit {
         return new SInit(["John"], function(Recipient $Object){
             $Object->changeName("Barbara");
