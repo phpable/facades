@@ -40,13 +40,12 @@ use \Able\Facades\Structures\SInit;
 class FacadeExample extends AFacade {
     
     /**
-     * @var string
+     * The recipient class.
      */
     protected static $Recipient = Recipient::class;
 
     /**
      * The initialize method can be used to provide the necessary arguments if any. 
-     * @throws \Exception
      */
     protected final static function initialize(): SInit {
         return new SInit(["John"]);
@@ -67,15 +66,11 @@ use \Able\Facades\AFacade;
 use \Able\Facades\Structures\SInit;
 
 class FacadeExample extends AFacade {
-    
-    /**
-     * @var string
-     */
     protected static $Recipient = Recipient::class;
 
     /**
-     * The initialize method can be used to provide the necessary arguments if any. 
-     * @throws \Exception
+     * The initialize method can be used to provide the necessary 
+     * to the recipient arguments if any. 
      */
     protected final static function initialize(): SInit {
         return new SInit(["John"], function(Recipient $Object){
@@ -100,8 +95,6 @@ class FacadeExample extends AFacade {
     /**
      * If this property set to false, the new instance of the recipient object 
      * going to be created before any method call.
-     *
-     * @var string
      */
     protected static $keepSingle  = false;
 }
