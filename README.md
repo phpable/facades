@@ -45,8 +45,8 @@ class FacadeExample extends AFacade {
     protected static $Recipient = Recipient::class;
 
     /**
-     * The initialize method can be used to provide the necessary 
-     * to the recipient arguments if any. 
+     * The initialize method can be used to provide 
+     * some necessary arguments to the recipient class constructor if needed.
      */
     protected final static function initialize(): SInit {
         return new SInit(["John"]);
