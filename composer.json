@@ -1,9 +1,8 @@
 {
 	"name": "able/facades",
-	"version": "2.0",
 	"type": "library",
 	"keywords": ["phpable", "facade"],
-	"description": "phpABLE facade abstractions library",
+	"description": "phpABLE facade pattern implementation library",
 	"license": "MIT",
 	"authors": [
 		{
@@ -13,13 +12,11 @@
 	],
 	"require": {
 		"php": ">=7.2.0",
-		"able/prototypes": "dev-master"
+		"able/statics": "1.0.*"
 	},
 	"autoload": {
 		"psr-4": {
 			"Able\\Facades\\": "src/"
 		}
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true
+	}
 }
