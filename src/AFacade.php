@@ -22,11 +22,14 @@ abstract class AFacade {
 	 */
 	private static $Cache = [];
 
+
 	/**
-	 * @return object
+	 * @param string $name
+	 * @param array $Args
+	 * @return mixed
 	 * @throws \Exception
 	 */
-	private final static function prepare(): object {
+	public final static function __callStatic(string $name, array $Args) {
 		if (!static::$keepSingle || !isset(self::$Cache[static::class])){
 
 			/**
@@ -59,17 +62,7 @@ abstract class AFacade {
 			}
 		}
 
-		return self::$Cache[static::class];
-	}
-
-	/**
-	 * @param string $name
-	 * @param array $Args
-	 * @return mixed
-	 * @throws \Exception
-	 */
-	public final static function __callStatic(string $name, array $Args) {
-		return self::prepare()->{$name}(...$Args);
+		return self::$Cache[static::class]->{$name}(...$Args);
 	}
 
 	/**
