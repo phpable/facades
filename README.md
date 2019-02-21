@@ -13,7 +13,7 @@ composer require able/facades
 ```
 
 ## Usage
-Please, follow the example below:    
+Let's design a simple class to explain how facades work:
 
 ```php
 class Recipient {
@@ -32,6 +32,10 @@ class Recipient {
     }
 }
 ```
+
+So the point to use a facade is an ability to call recipients method statically, 
+without creating any instances directly. In this case, the facade class takes a gateway role.
+The advantage we gain - more transparent and understandable code. 
 
 ```php
 use \Able\Facades\AFacade;
