@@ -2,7 +2,7 @@
 namespace Able\Facades;
 
 use \Able\Facades\Structures\SInit;
-use \Able\Statics\TStatic;
+use \Able\Static\TStatic;
 
 abstract class AFacade {
 	use TStatic;
